@@ -8,6 +8,7 @@ import {
     ScrollView,
     Animated,
     TextInput,
+    Pressable,
 } from 'react-native';
 
 import { SelectListProps } from '..';
@@ -36,7 +37,8 @@ const SelectList: React.FC<SelectListProps> =  ({
         onSelect = () => {},
         save = 'key',
         dropdownShown = false,
-        fontFamily
+        fontFamily,
+        pressedStyles,
     }) => {
 
     const oldOption = React.useRef(null)
@@ -200,13 +202,13 @@ const SelectList: React.FC<SelectListProps> =  ({
                                     let disabled = item.disabled ?? false;
                                     if(disabled){
                                         return(
-                                            <TouchableOpacity style={[styles.disabledoption,disabledItemStyles]} key={index} onPress={ () => {}}>
+                                            <Pressable style={[styles.disabledoption,disabledItemStyles]} key={index} onPress={ () => {}}>
                                                 <Text style={[{color:'#c4c5c6',fontFamily},disabledTextStyles]}>{value}</Text>
-                                            </TouchableOpacity>
+                                            </Pressable>
                                         )
                                     }else{
                                         return(
-                                            <TouchableOpacity style={[styles.option,dropdownItemStyles]} key={index} onPress={ () => {
+                                            <Pressable style={({pressed})=>pressed ? [styles.option,dropdownItemStyles,pressedStyles] : [styles.option,dropdownItemStyles]} key={index} onPress={ () => {
                                                 if(save === 'value'){
                                                     setSelected(value);
                                                 }else{
@@ -219,13 +221,13 @@ const SelectList: React.FC<SelectListProps> =  ({
                                                 
                                             }}>
                                                 <Text numberOfLines={1} ellipsizeMode='tail' style={[{fontFamily},dropdownTextStyles]}>{value}</Text>
-                                            </TouchableOpacity>
+                                            </Pressable>
                                         )
                                     }
                                     
                                 })
                                 :
-                                <TouchableOpacity style={[styles.option,dropdownItemStyles]} onPress={ () => {
+                                <Pressable style={[styles.option,dropdownItemStyles]} onPress={ () => {
                                     setSelected(undefined)
                                     setSelectedVal("")
                                     slideup()
@@ -233,7 +235,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                                     
                                 }}>
                                     <Text style={[{fontFamily},dropdownTextStyles]}>{notFoundText}</Text>
-                                </TouchableOpacity>
+                                </Pressable>
                             }
                             
                             
