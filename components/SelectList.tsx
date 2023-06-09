@@ -169,7 +169,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                     </View>
                 :
                     <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ slidedown() }else{ slideup() } }}>
-                        <Text style={[{fontFamily},inputStyles]}>{ (selectedval == "") ? (placeholder) ? placeholder : 'Select option' : selectedval  }</Text>
+                        <Text ellipsizeMode='tail' numberOfLines={1} style={[{fontFamily},inputStyles]}>{ (selectedval == "") ? (placeholder) ? placeholder : 'Select option' : selectedval  }</Text>
                         {
                             (!arrowicon)
                             ?
@@ -218,7 +218,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                                                 setTimeout(() => {setFilteredData(data)}, 800)
                                                 
                                             }}>
-                                                <Text style={[{fontFamily},dropdownTextStyles]}>{value}</Text>
+                                                <Text numberOfLines={1} ellipsizeMode='tail' style={[{fontFamily},dropdownTextStyles]}>{value}</Text>
                                             </TouchableOpacity>
                                         )
                                     }
