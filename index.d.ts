@@ -113,7 +113,7 @@ export interface SelectListProps  {
     */
     closeicon?: JSX.Element,
 
-    pressedStyles?:ViewStyle
+    pressedStyles?:ViewStyle|TextStyle
 }
 
 
