@@ -195,11 +195,12 @@ const SelectList: React.FC<SelectListProps> =  ({
 
                             {
                                 (filtereddata.length >=  1)
-                                ?
+                                ? 
                                 filtereddata.map((item: L1Keys,index: number) => {
                                     let key = item.key ?? item.value ?? item;
                                     let value = item.value ?? item;
                                     let disabled = item.disabled ?? false;
+                                   
                                     if(disabled){
                                         return(
                                             <Pressable style={[styles.disabledoption,disabledItemStyles]} key={index} onPress={ () => {}}>
@@ -208,7 +209,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                                         )
                                     }else{
                                         return(
-                                            <Pressable style={({pressed})=>pressed ? [styles.option,dropdownItemStyles,pressedStyles] : [styles.option,dropdownItemStyles]} key={index} onPress={ () => {
+                                            <Pressable style={({pressed})=>pressed|| (selectedval === item.value) ? [styles.option,dropdownItemStyles,pressedStyles] : [styles.option,dropdownItemStyles]} key={index} onPress={ () => {
                                                 if(save === 'value'){
                                                     setSelected(value);
                                                 }else{
@@ -220,7 +221,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                                                 setTimeout(() => {setFilteredData(data)}, 800)
                                                 
                                             }}>
-                                                <Text numberOfLines={1} ellipsizeMode='tail' style={[{fontFamily},dropdownTextStyles]}>{value}</Text>
+                                                {({pressed})=><Text numberOfLines={1} ellipsizeMode='tail' style={[{fontFamily},dropdownTextStyles, (pressed|| (selectedval === item.value)) && pressedStyles]}>{value}</Text>}
                                             </Pressable>
                                         )
                                     }
