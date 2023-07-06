@@ -170,7 +170,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                         
                     </View>
                 :
-                    <TouchableOpacity style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ slidedown() }else{ slideup() } }}>
+                    <Pressable style={[styles.wrapper,boxStyles]} onPress={() => { if(!dropdown){ slidedown() }else{ slideup() } }}>
                         <Text ellipsizeMode='tail' numberOfLines={1} style={[{fontFamily},inputStyles]}>{ (selectedval == "") ? (placeholder) ? placeholder : 'Select option' : selectedval  }</Text>
                         {
                             (!arrowicon)
@@ -184,7 +184,7 @@ const SelectList: React.FC<SelectListProps> =  ({
                                 arrowicon
                         }
                         
-                    </TouchableOpacity>
+                    </Pressable>
             }
             
             {
